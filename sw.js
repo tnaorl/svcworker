@@ -17,6 +17,20 @@ this.addEventListener('install', function(event) {
   );
 });
 
+self.addEventListener('activate', function(event) {
+  event.waitUntil(self.clients.claim().then(function() {
+    // See https://developer.mozilla.org/en-US/docs/Web/API/Clients/matchAll
+    return self.clients.matchAll({type: 'wearable'});
+  }).then(function(clients) {
+    return clients.map(function(client) {
+      // Check to make sure WindowClient.navigate() is supported.
+      if ('navigate' in client) {
+        return client.navigate('activated.html');
+      }
+    });
+  }));
+});
+
 this.addEventListener('fetch', function(event) {
   var response;
   event.respondWith(caches.match(event.request).catch(function() {
