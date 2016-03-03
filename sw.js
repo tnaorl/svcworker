@@ -17,15 +17,15 @@ this.addEventListener('install', function(event) {
   );
 });
 
-self.addEventListener('activate', function(event) {
-  event.waitUntil(self.clients.claim().then(function() {
+this.addEventListener('activate', function(event) {
+  event.waitUntil(this.clients.claim().then(function() {
     // See https://developer.mozilla.org/en-US/docs/Web/API/Clients/matchAll
-    return self.clients.matchAll({type: 'wearable'});
+    return this.clients.matchAll({type: 'wearable'});
   }).then(function(clients) {
     return clients.map(function(client) {
       // Check to make sure WindowClient.navigate() is supported.
-      if ('navigate' in client) {
-        return client.navigate('activated.html');
+      if ('postmessage' in client) {
+        return client.postmessage({"open",http://www.naver.com});
       }
     });
   }));
