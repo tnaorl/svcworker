@@ -5,7 +5,8 @@ this.addEventListener('install', function(event) {
         '/svcworker/',
         '/svcworker/index.html',
         '/svcworker/style.css',
-        '/svcworker/app.js'
+        '/svcworker/app.js',
+        '/svcworker/Service.jpg'
       ]);
     })
   );
@@ -15,7 +16,8 @@ this.addEventListener('activate', function(event) {
   event.waitUntil(this.clients.claim().then(function() {
     // See https://developer.mozilla.org/en-US/docs/Web/API/Clients/matchAll
     console.log('matchAll executing..');
-    return this.clients.matchAll({type: 'wearable'});
+    // return this.clients.matchAll({type: 'wearable'});
+    return this.clients.matchAll({type: 'window'});
   }).then(function(clients) {
     return clients.map(function(client) {
       if ('postmessage' in client) {
