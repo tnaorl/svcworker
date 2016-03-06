@@ -2,16 +2,10 @@ this.addEventListener('install', function(event) {
   event.waitUntil(
     caches.open('v1').then(function(cache) {
       return cache.addAll([
-        '/sw-test/',
-        '/sw-test/index.html',
-        '/sw-test/style.css',
-        '/sw-test/app.js',
-        '/sw-test/image-list.js',
-        '/sw-test/star-wars-logo.jpg',
-        '/sw-test/gallery/',
-        '/sw-test/gallery/bountyHunters.jpg',
-        '/sw-test/gallery/myLittleVader.jpg',
-        '/sw-test/gallery/snowTroopers.jpg'
+        '/svcworker/',
+        '/svcworker/index.html',
+        '/svcworker/style.css',
+        '/svcworker/app.js'
       ]);
     })
   );
@@ -20,12 +14,13 @@ this.addEventListener('install', function(event) {
 this.addEventListener('activate', function(event) {
   event.waitUntil(this.clients.claim().then(function() {
     // See https://developer.mozilla.org/en-US/docs/Web/API/Clients/matchAll
+    console.log('matchAll executing..');
     return this.clients.matchAll({type: 'wearable'});
   }).then(function(clients) {
     return clients.map(function(client) {
-      // Check to make sure WindowClient.navigate() is supported.
       if ('postmessage' in client) {
-        return client.postmessage({"open",http://www.naver.com});
+        console.log('postMessage executing..');
+        return client.postmessage({'open', 'http://www.naver.com'});
       }
     });
   }));
@@ -42,6 +37,7 @@ this.addEventListener('fetch', function(event) {
     });
     return response.clone();
   }).catch(function() {
-    return caches.match('/sw-test/gallery/myLittleVader.jpg');
+    // return caches.match('/svcworker/gallery/myLittleVader.jpg');
+    console.log('fetch returns nothing..');
   }));
 });
