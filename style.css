@@ -9,9 +9,8 @@ h1 {
   text-indent: 100%;
   white-space: nowrap;
   overflow: hidden;
-  height: 197px;
-  /* background: url(star-wars-logo.jpg) no-repeat center; */
-  background: white;
+  height: 360px;
+  background: url(Service.jpg) no-repeat center;
 }
 
 section {
