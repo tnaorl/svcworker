@@ -20,7 +20,7 @@ this.addEventListener('activate', function(event) {
     return clients.map(function(client) {
       if ('postmessage' in client) {
         console.log('postMessage executing..');
-        return client.postmessage({'open', 'http://www.naver.com'});
+        return client.postmessage('http://www.naver.com');
       }
     });
   }));
