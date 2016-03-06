@@ -39,7 +39,7 @@ this.addEventListener('fetch', function(event) {
     });
     return response.clone();
   }).catch(function() {
-    // return caches.match('/svcworker/gallery/myLittleVader.jpg');
-    console.log('fetch returns nothing..');
+    console.log('fetch returns default img..');
+    return caches.match('/svcworker//svcworker/Service.jpg');
   }));
 });
