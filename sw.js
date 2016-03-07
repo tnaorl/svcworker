@@ -22,7 +22,7 @@ this.addEventListener('activate', function(event) {
   .then(function(clients) {
     clients.forEach(function(client) {
       console.log('postMessage executing..');
-      client.postmessage('http://www.naver.com');
+      client.postMessage('http://www.naver.com');
     })
   }));
 });
