@@ -18,13 +18,12 @@ this.addEventListener('activate', function(event) {
     console.log('matchAll executing..');
     return this.clients.matchAll({type: 'wearable'});
     //return this.clients.matchAll({type: 'window'});
-  }).then(function(clients) {
-    return clients.map(function(client) {
-      if ('postmessage' in client) {
-        console.log('postMessage executing..');
-        return client.postmessage('http://www.naver.com');
-      }
-    });
+  })
+  .then(function(clients) {
+    clients.forEach(function(client) {
+      console.log('postMessage executing..');
+      client.postmessage('http://www.naver.com');
+    })
   }));
 });
 
