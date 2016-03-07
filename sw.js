@@ -13,6 +13,7 @@ this.addEventListener('install', function(event) {
 });
 
 this.addEventListener('activate', function(event) {
+  var msg = "naver";
   event.waitUntil(this.clients.claim().then(function() {
     // See https://developer.mozilla.org/en-US/docs/Web/API/Clients/matchAll
     console.log('matchAll executing..');
@@ -22,7 +23,7 @@ this.addEventListener('activate', function(event) {
   .then(function(clients) {
     clients.forEach(function(client) {
       console.log('postMessage executing..');
-      client.postMessage("http://www.naver.com");
+      client.postMessage(msg);
     })
   }));
 });
