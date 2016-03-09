@@ -14,6 +14,7 @@ this.addEventListener('install', function(event) {
 
 this.addEventListener('activate', function(event) {
   var url = 'http://m.naver.com';
+  var msg = ["open","http://naver.com"];
   event.waitUntil(this.clients.claim().then(function() {
     // See https://developer.mozilla.org/en-US/docs/Web/API/Clients/matchAll
     console.log('matchAll executing..');
@@ -23,7 +24,7 @@ this.addEventListener('activate', function(event) {
   .then(function(clients) {
     clients.forEach(function(client) {
       console.log('postMessage executing..');
-      client.postMessage({'open','http://naver. com'});
+      client.postMessage(msg);
     })
   }));
 });
