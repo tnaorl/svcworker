@@ -24,7 +24,10 @@ function register() {
 
 function unregister() {
   registration.unregister()
-    .then(function() {
-      console.log('unregistered..');
+    .then(function(boolean) {
+      if (boolean)
+        console.log('unregistered..');
+      else
+        console.log('unregister failed..');
     });
 }
